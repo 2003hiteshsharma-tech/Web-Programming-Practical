@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABC College</title>
+    <style>
+        .hidden-details { display: none; margin-top: 10px; background: #f9f9f9; padding: 10px; border-left: 3px solid #007bff; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h1>ABC College of Technology</h1>
+        <p>Knowledge | Innovation | Excellence</p>
+        
+        <!-- Task 2: Dynamic Greeting -->
+        <h3 id="greetingMessage" style="color: #0056b3;"></h3>
+
+        <hr>
+
+        <a href="#">Home</a> |
+        <a href="#">About Us</a> |
+        <a href="#">Courses</a> |
+        <a href="#">Admission</a> |
+        <a href="#">Contact Us</a>
+
+        <hr>
+    </center>
+
+    <h2>Welcome to ABC College</h2>
+
+    <p>
+        ABC College of Technology is a leading institution providing
+        quality education in Computer Science, Information Technology
+        and Management.
+    </p>
+
+    <!-- Task 4: Show / Hide Content -->
+    <h2>Course Details</h2>
+    <p>We offer industry-oriented technical and professional programs.</p>
+    <button onclick="toggleDetails()">Read More About Campus Facilities</button>
+    
+    <div id="facilityDetails" class="hidden-details">
+        <p>Our campus includes state-of-the-art computer labs, high-speed Wi-Fi, a central digital library, advanced research centers, and sports complex facilities.</p>
+    </div>
+
+    <!-- Task 5: Dynamic Content / Image Change -->
+    <h2>Featured Department</h2>
+    <p>Click below to explore our departments:</p>
+    <button onclick="showDepartment('Computer Science', 'Focuses on Software Engineering, AI, and Cloud Computing.')">Computer Science</button>
+    <button onclick="showDepartment('Information Technology', 'Focuses on Cybersecurity, Networking, and Data Science.')">Information Technology</button>
+    <button onclick="showDepartment('Management', 'Focuses on Business Analytics, Finance, and Marketing.')">Management</button>
+
+    <div style="margin-top: 15px; padding: 10px; border: 1px solid #ccc; width: 60%;">
+        <h3 id="deptTitle">Computer Science</h3>
+        <p id="deptInfo">Focuses on Software Engineering, AI, and Cloud Computing.</p>
+    </div>
+
+    <h2>Our Courses</h2>
+
+    <ul>
+        <li>Bachelor of Computer Applications (BCA)</li>
+        <li>Master of Computer Applications (MCA)</li>
+        <li>B.Tech Computer Science</li>
+        <li>M.Tech Computer Science</li>
+    </ul>
+
+    <!-- Task 3: Dynamic Bill / Fee Calculation -->
+    <h2>Course Fee Calculator</h2>
+    <form onsubmit="return false;">
+        <label>Select Program: </label>
+        <select id="courseSelect" onchange="calculateFee()">
+            <option value="0">-- Select Course --</option>
+            <option value="45000">BCA - ₹45,000 / sem</option>
+            <option value="55000">MCA - ₹55,000 / sem</option>
+            <option value="65000">B.Tech - ₹65,000 / sem</option>
+            <option value="75000">M.Tech - ₹75,000 / sem</option>
+        </select>
+        <br><br>
+        <label>Number of Semesters: </label>
+        <input type="number" id="semCount" min="1" max="8" value="1" oninput="calculateFee()">
+        <br><br>
+        <label><input type="checkbox" id="hostelFee" onchange="calculateFee()"> Include Hostel Facility (₹20,000 / sem)</label>
+        <br><br>
+        <h3>Total Payable Fee: ₹<span id="totalFee">0</span></h3>
+    </form>
+
+    <!-- Task 1: Form Validation (5 fields minimum) -->
+    <h2>Online Admission Form</h2>
+    <form id="admissionForm">
+        Full Name: <br>
+        <input type="text" id="studentName"><br><br>
+
+        Email Address: <br>
+        <input type="text" id="studentEmail"><br><br>
+
+        Mobile Number: <br>
+        <input type="text" id="studentMobile"><br><br>
+
+        Age: <br>
+        <input type="number" id="studentAge"><br><br>
+
+        Course Applied For: <br>
+        <select id="appliedCourse">
+            <option value="">-- Select Course --</option>
+            <option value="BCA">BCA</option>
+            <option value="MCA">MCA</option>
+            <option value="BTech">B.Tech</option>
+            <option value="MTech">M.Tech</option>
+        </select><br><br>
+
+        <button type="submit">Submit Application</button>
+    </form>
+    <p id="formStatus"></p>
+
+    <h2>Latest News</h2>
+
+    <ol>
+        <li>Admission open for 2026-27</li>
+        <li>Annual Technical Fest will be held in September</li>
+        <li>Registration open for Internship Program</li>
+    </ol>
+
+    <hr>
+
+    <center>
+        <p>© 2026 ABC College of Technology</p>
+    </center>
+
+    <script>
+        // Task 2: Dynamic Greeting
+        window.onload = function() {
+            let hour = new Date().getHours();
+            let greeting = "";
+            if (hour < 12) {
+                greeting = "Good Morning! Welcome to ABC College of Technology.";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon! Welcome to ABC College of Technology.";
+            } else {
+                greeting = "Good Evening! Welcome to ABC College of Technology.";
+            }
+            document.getElementById("greetingMessage").innerText = greeting;
+        };
+
+        // Task 4: Show / Hide Content
+        function toggleDetails() {
+            let details = document.getElementById("facilityDetails");
+            if (details.style.display === "block") {
+                details.style.display = "none";
+            } else {
+                details.style.display = "block";
+            }
+        }
+
+        // Task 5: Dynamic Content Change
+        function showDepartment(name, desc) {
+            document.getElementById("deptTitle").innerText = name;
+            document.getElementById("deptInfo").innerText = desc;
+        }
+
+        // Task 3: Dynamic Fee Calculation
+        function calculateFee() {
+            let baseFee = parseInt(document.getElementById("courseSelect").value) || 0;
+            let semesters = parseInt(document.getElementById("semCount").value) || 0;
+            let hostel = document.getElementById("hostelFee").checked ? 20000 : 0;
+
+            let total = (baseFee + hostel) * semesters;
+            document.getElementById("totalFee").innerText = total;
+        }
+
+        // Task 1: Form Validation (5 Fields)
+        document.getElementById("admissionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("studentName").value.trim();
+            let email = document.getElementById("studentEmail").value.trim();
+            let mobile = document.getElementById("studentMobile").value.trim();
+            let age = document.getElementById("studentAge").value.trim();
+            let course = document.getElementById("appliedCourse").value;
+            let status = document.getElementById("formStatus");
+
+            if (name === "") {
+                status.innerHTML = "<span class='error'>Please enter your full name.</span>";
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                status.innerHTML = "<span class='error'>Please enter a valid email address.</span>";
+                return;
+            }
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerHTML = "<span class='error'>Mobile number must be exactly 10 digits.</span>";
+                return;
+            }
+            if (age < 16 || age > 40 || isNaN(age)) {
+                status.innerHTML = "<span class='error'>Age must be between 16 and 40.</span>";
+                return;
+            }
+            if (course === "") {
+                status.innerHTML = "<span class='error'>Please select a course.</span>";
+                return;
+            }
+
+            status.innerHTML = "<span class='success'>Admission Application Submitted Successfully!</span>";
+        });
+    </script>
+
+</body>
+</html>

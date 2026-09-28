@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Book Store</title>
+    <style>
+        .hidden-offer { display: none; background: #e2f0d9; padding: 10px; margin-top: 10px; border: 1px solid #385723; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body>
+
+    <center>
+
+        <h1>ABC Online Book Store</h1>
+
+        <p>Your Online Destination for Books</p>
+
+        <!-- Task 2: Dynamic Greeting -->
+        <h3 id="bookGreeting" style="color: #385723;"></h3>
+
+        <hr>
+
+        <a href="#">Home</a> |
+        <a href="#">Books</a> |
+        <a href="#">Categories</a> |
+        <a href="#">Offers</a> |
+        <a href="#">Contact Us</a>
+
+        <hr>
+
+    </center>
+
+    <h2>Welcome to ABC Online Book Store</h2>
+
+    <p>
+        Find books from different categories including technology,
+        programming, fiction, business and education.
+    </p>
+
+    <!-- Task 4: Show / Hide Content -->
+    <h2>Special Offer Details</h2>
+    <p>Get 20% discount on selected books.</p>
+    <button onclick="toggleOffer()">View Offer Terms & Promo Code</button>
+    <div id="offerDetails" class="hidden-offer">
+        <p>Use Coupon Code: <strong>READ2026</strong> at checkout to claim 20% discount on orders above ₹500.</p>
+    </div>
+
+    <!-- Task 5: Dynamic Content Change -->
+    <h2>Featured Book Preview</h2>
+    <button onclick="changeBook('Python Programming', 'John Smith', '₹450', 'Learn basics to advanced Python syntax with real-world examples.')">Python Programming</button>
+    <button onclick="changeBook('Web Technology', 'David Brown', '₹500', 'Covers HTML5, CSS3, JavaScript, and Modern Web Frameworks.')">Web Technology</button>
+    <button onclick="changeBook('Database Management', 'Robert Lee', '₹550', 'Master SQL queries, normalization, and relational databases.')">Database Management</button>
+
+    <div style="margin-top: 10px; padding: 10px; border: 1px solid #385723; width: 60%;">
+        <h3 id="bookTitle">Python Programming</h3>
+        <p>Author: <span id="bookAuthor">John Smith</span> | Price: <span id="bookPrice">₹450</span></p>
+        <p id="bookDesc">Learn basics to advanced Python syntax with real-world examples.</p>
+    </div>
+
+    <h2>Book Categories</h2>
+
+    <ul>
+        <li>Programming</li>
+        <li>Computer Science</li>
+        <li>Business</li>
+        <li>Fiction</li>
+        <li>Competitive Exams</li>
+    </ul>
+
+    <h2>Popular Books</h2>
+
+    <table border="1">
+        <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Python Programming</td>
+            <td>John Smith</td>
+            <td>₹450</td>
+        </tr>
+        <tr>
+            <td>Web Technology</td>
+            <td>David Brown</td>
+            <td>₹500</td>
+        </tr>
+        <tr>
+            <td>Database Management</td>
+            <td>Robert Lee</td>
+            <td>₹550</td>
+        </tr>
+    </table>
+
+    <!-- Task 3: Dynamic Bill / Price Calculation -->
+    <h2>Order Price Calculator</h2>
+    <form onsubmit="return false;">
+        Select Book: <br>
+        <select id="bookSelect" onchange="calculateBookTotal()">
+            <option value="0">-- Select Book --</option>
+            <option value="450">Python Programming - ₹450</option>
+            <option value="500">Web Technology - ₹500</option>
+            <option value="550">Database Management - ₹550</option>
+        </select><br><br>
+
+        Quantity: <br>
+        <input type="number" id="bookQty" min="1" value="1" oninput="calculateBookTotal()"><br><br>
+
+        <label><input type="checkbox" id="expressShipping" onchange="calculateBookTotal()"> Add Express Delivery (₹50)</label><br><br>
+
+        <h3>Total Payable Amount: ₹<span id="bookTotal">0</span></h3>
+    </form>
+
+    <!-- Task 1: Form Validation (5 fields minimum) -->
+    <h2>Book Order / Registration Form</h2>
+    <form id="orderForm">
+        Full Name: <br>
+        <input type="text" id="custName"><br><br>
+
+        Email: <br>
+        <input type="text" id="custEmail"><br><br>
+
+        Mobile Number: <br>
+        <input type="text" id="custMobile"><br><br>
+
+        Delivery Pincode: <br>
+        <input type="text" id="custPincode"><br><br>
+
+        Delivery Address: <br>
+        <textarea id="custAddress" rows="3"></textarea><br><br>
+
+        <button type="submit">Place Order</button>
+    </form>
+    <p id="orderStatus"></p>
+
+    <hr>
+
+    <center>
+        <p>© 2026 ABC Online Book Store</p>
+    </center>
+
+    <script>
+        // Task 2: Dynamic Greeting
+        window.onload = function() {
+            let hour = new Date().getHours();
+            let greeting = "";
+            if (hour < 12) {
+                greeting = "Good Morning! Start your day with a great book.";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon! Welcome to ABC Online Book Store.";
+            } else {
+                greeting = "Good Evening! Perfect time for night reading.";
+            }
+            document.getElementById("bookGreeting").innerText = greeting;
+        };
+
+        // Task 4: Show / Hide Content
+        function toggleOffer() {
+            let offer = document.getElementById("offerDetails");
+            if (offer.style.display === "block") {
+                offer.style.display = "none";
+            } else {
+                offer.style.display = "block";
+            }
+        }
+
+        // Task 5: Dynamic Content Change
+        function changeBook(title, author, price, desc) {
+            document.getElementById("bookTitle").innerText = title;
+            document.getElementById("bookAuthor").innerText = author;
+            document.getElementById("bookPrice").innerText = price;
+            document.getElementById("bookDesc").innerText = desc;
+        }
+
+        // Task 3: Dynamic Price Calculation
+        function calculateBookTotal() {
+            let price = parseInt(document.getElementById("bookSelect").value) || 0;
+            let qty = parseInt(document.getElementById("bookQty").value) || 0;
+            let shipping = document.getElementById("expressShipping").checked ? 50 : 0;
+
+            let total = (price * qty) + (price > 0 ? shipping : 0);
+            document.getElementById("bookTotal").innerText = total;
+        }
+
+        // Task 1: Form Validation (5 Fields)
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("custName").value.trim();
+            let email = document.getElementById("custEmail").value.trim();
+            let mobile = document.getElementById("custMobile").value.trim();
+            let pincode = document.getElementById("custPincode").value.trim();
+            let address = document.getElementById("custAddress").value.trim();
+            let status = document.getElementById("orderStatus");
+
+            if (name === "") {
+                status.innerHTML = "<span class='error'>Please enter your name.</span>";
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                status.innerHTML = "<span class='error'>Please enter a valid email address.</span>";
+                return;
+            }
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerHTML = "<span class='error'>Mobile number must be 10 digits.</span>";
+                return;
+            }
+            if (pincode.length !== 6 || isNaN(pincode)) {
+                status.innerHTML = "<span class='error'>Pincode must be 6 numeric digits.</span>";
+                return;
+            }
+            if (address.length < 10) {
+                status.innerHTML = "<span class='error'>Please enter a complete address (min 10 characters).</span>";
+                return;
+            }
+
+            status.innerHTML = "<span class='success'>Order Placed Successfully!</span>";
+        });
+    </script>
+
+</body>
+</html>

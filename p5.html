@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department of Computer Science</title>
+    <style>
+        .hidden-section { display: none; background: #f0f4f8; padding: 10px; margin-top: 10px; border-left: 4px solid #17a2b8; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body>
+
+    <center>
+
+        <h1>Department of Computer Science</h1>
+
+        <h3>XYZ University</h3>
+
+        <!-- Task 2: Dynamic Greeting -->
+        <h4 id="csGreeting" style="color: #17a2b8;"></h4>
+
+        <hr>
+
+        <a href="#">Home</a> |
+        <a href="#">About Department</a> |
+        <a href="#">Faculty</a> |
+        <a href="#">Courses</a> |
+        <a href="#">Contact</a>
+
+        <hr>
+
+    </center>
+
+    <h2>Welcome to the Department</h2>
+
+    <p>
+        The Department of Computer Science provides quality education
+        and develops technical and problem-solving skills among students.
+    </p>
+
+    <!-- Task 4: Show / Hide Content -->
+    <h2>Research & Innovation Labs</h2>
+    <button onclick="toggleLabDetails()">View Research Labs</button>
+    <div id="labDetails" class="hidden-section">
+        <p>The CS department hosts the AI & Robotics Lab, IoT Innovation Hub, and Cyber Security Testing Center for undergraduate and post-graduate projects.</p>
+    </div>
+
+    <!-- Task 5: Dynamic Content Change -->
+    <h2>Faculty Profiles</h2>
+    <p>Click on a professor's name to view profile information:</p>
+    <button onclick="showFaculty('Dr. Amit Sharma', 'Professor', 'Artificial Intelligence', 'amit.sharma@xyzuniversity.edu')">Dr. Amit Sharma</button>
+    <button onclick="showFaculty('Dr. Neha Verma', 'Associate Professor', 'Data Science', 'neha.verma@xyzuniversity.edu')">Dr. Neha Verma</button>
+    <button onclick="showFaculty('Mr. Rahul Singh', 'Assistant Professor', 'Computer Networks', 'rahul.singh@xyzuniversity.edu')">Mr. Rahul Singh</button>
+
+    <div style="margin-top: 10px; padding: 10px; border: 1px solid #17a2b8; width: 55%;">
+        <h3 id="facName">Dr. Amit Sharma</h3>
+        <p>Designation: <span id="facDesig">Professor</span></p>
+        <p>Specialization: <span id="facSpec">Artificial Intelligence</span></p>
+        <p>Email: <span id="facEmail">amit.sharma@xyzuniversity.edu</span></p>
+    </div>
+
+    <h2>Programs Offered</h2>
+
+    <ul>
+        <li>BCA</li>
+        <li>MCA</li>
+        <li>B.Tech Computer Science</li>
+        <li>M.Tech Computer Science</li>
+    </ul>
+
+    <!-- Task 3: Dynamic Bill / Fee Calculation -->
+    <h2>Semester Fee & Lab Charges Estimator</h2>
+    <form onsubmit="return false;">
+        Select Program: <br>
+        <select id="progSelect" onchange="calculateDeptFee()">
+            <option value="0">-- Select Program --</option>
+            <option value="30000">BCA - ₹30,000</option>
+            <option value="40000">MCA - ₹40,000</option>
+            <option value="50000">B.Tech CS - ₹50,000</option>
+            <option value="60000">M.Tech CS - ₹60,000</option>
+        </select><br><br>
+
+        <label><input type="checkbox" id="labCharge" value="3000" onchange="calculateDeptFee()"> CS Lab Access Fee (₹3,000)</label><br>
+        <label><input type="checkbox" id="examCharge" value="1500" onchange="calculateDeptFee()"> Examination Fee (₹1,500)</label><br><br>
+
+        <h3>Total Payable Semester Fee: ₹<span id="deptTotal">0</span></h3>
+    </form>
+
+    <h2>Faculty Members</h2>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Specialization</th>
+        </tr>
+        <tr>
+            <td>Dr. Amit Sharma</td>
+            <td>Professor</td>
+            <td>Artificial Intelligence</td>
+        </tr>
+        <tr>
+            <td>Dr. Neha Verma</td>
+            <td>Associate Professor</td>
+            <td>Data Science</td>
+        </tr>
+        <tr>
+            <td>Mr. Rahul Singh</td>
+            <td>Assistant Professor</td>
+            <td>Computer Networks</td>
+        </tr>
+    </table>
+
+    <!-- Task 1: Form Validation (5 fields minimum) -->
+    <h2>Seminar / Event Registration</h2>
+    <form id="seminarForm">
+        Student Name: <br>
+        <input type="text" id="semName"><br><br>
+
+        University Roll No: <br>
+        <input type="text" id="semRoll"><br><br>
+
+        Email: <br>
+        <input type="text" id="semEmail"><br><br>
+
+        Mobile Number: <br>
+        <input type="text" id="semMobile"><br><br>
+
+        Semester: <br>
+        <input type="number" id="semSem" min="1" max="8"><br><br>
+
+        <button type="submit">Register for Seminar</button>
+    </form>
+    <p id="seminarStatus"></p>
+
+    <h2>Important Notice</h2>
+
+    <ol>
+        <li>Mid-term examinations will begin from 15 September.</li>
+        <li>Students must submit their assignments before the deadline.</li>
+        <li>Registration for the seminar is now open.</li>
+    </ol>
+
+    <h2>Contact Us</h2>
+
+    <p>
+        Department of Computer Science<br>
+        XYZ University<br>
+        Jaipur, Rajasthan<br>
+        Email: cs@xyzuniversity.edu
+    </p>
+
+    <hr>
+
+    <center>
+        <p>© 2026 XYZ University</p>
+    </center>
+
+    <script>
+        // Task 2: Dynamic Greeting
+        window.onload = function() {
+            let hour = new Date().getHours();
+            let greeting = "";
+            if (hour < 12) {
+                greeting = "Good Morning! Welcome to CS Department Portal.";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon! Welcome to CS Department Portal.";
+            } else {
+                greeting = "Good Evening! Welcome to CS Department Portal.";
+            }
+            document.getElementById("csGreeting").innerText = greeting;
+        };
+
+        // Task 4: Show / Hide Content
+        function toggleLabDetails() {
+            let labs = document.getElementById("labDetails");
+            if (labs.style.display === "block") {
+                labs.style.display = "none";
+            } else {
+                labs.style.display = "block";
+            }
+        }
+
+        // Task 5: Dynamic Content Change
+        function showFaculty(name, desig, spec, email) {
+            document.getElementById("facName").innerText = name;
+            document.getElementById("facDesig").innerText = desig;
+            document.getElementById("facSpec").innerText = spec;
+            document.getElementById("facEmail").innerText = email;
+        }
+
+        // Task 3: Dynamic Price Calculation
+        function calculateDeptFee() {
+            let base = parseInt(document.getElementById("progSelect").value) || 0;
+            let lab = document.getElementById("labCharge").checked ? 3000 : 0;
+            let exam = document.getElementById("examCharge").checked ? 1500 : 0;
+
+            let total = base > 0 ? (base + lab + exam) : 0;
+            document.getElementById("deptTotal").innerText = total;
+        }
+
+        // Task 1: Form Validation (5 Fields)
+        document.getElementById("seminarForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("semName").value.trim();
+            let roll = document.getElementById("semRoll").value.trim();
+            let email = document.getElementById("semEmail").value.trim();
+            let mobile = document.getElementById("semMobile").value.trim();
+            let sem = document.getElementById("semSem").value;
+            let status = document.getElementById("seminarStatus");
+
+            if (name === "") {
+                status.innerHTML = "<span class='error'>Please enter student name.</span>";
+                return;
+            }
+            if (roll === "" || isNaN(roll)) {
+                status.innerHTML = "<span class='error'>Please enter a valid numeric Roll Number.</span>";
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                status.innerHTML = "<span class='error'>Please enter a valid email address.</span>";
+                return;
+            }
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerHTML = "<span class='error'>Mobile number must be 10 digits.</span>";
+                return;
+            }
+            if (sem < 1 || sem > 8 || sem === "") {
+                status.innerHTML = "<span class='error'>Semester must be between 1 and 8.</span>";
+                return;
+            }
+
+            status.innerHTML = "<span class='success'>Seminar Registration Successful!</span>";
+        });
+    </script>
+
+</body>
+</html>

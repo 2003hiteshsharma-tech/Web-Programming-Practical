@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City Care Hospital</title>
+    <style>
+        .hidden-info { display: none; background: #eef7ff; padding: 10px; margin-top: 10px; border-left: 4px solid #0275d8; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body>
+
+    <center>
+
+        <h1>City Care Hospital</h1>
+        <p>Quality Healthcare for Everyone</p>
+        
+        <!-- Task 2: Dynamic Greeting -->
+        <h3 id="hospitalGreeting" style="color: #0275d8;"></h3>
+
+        <hr>
+
+        <a href="#">Home</a> |
+        <a href="#">About Hospital</a> |
+        <a href="#">Doctors</a> |
+        <a href="#">Services</a> |
+        <a href="#">Contact</a>
+
+        <hr>
+
+    </center>
+
+    <h2>Welcome to City Care Hospital</h2>
+
+    <p>
+        City Care Hospital provides modern healthcare facilities
+        with experienced doctors and trained medical staff.
+    </p>
+
+    <!-- Task 4: Show / Hide Content -->
+    <h2>Hospital Accreditation & Facilities</h2>
+    <button onclick="toggleHospitalInfo()">Show Special Facilities</button>
+    <div id="moreHospitalInfo" class="hidden-info">
+        <p>Facilities: 24/7 ICU & Trauma Center, NABL Accredited Pathology Lab, Advanced MRI & CT Scan, and 5 Operation Theaters.</p>
+    </div>
+
+    <!-- Task 5: Dynamic Content Change -->
+    <h2>Specialist Doctors On Duty</h2>
+    <p>Select a department to view the head specialist:</p>
+    <button onclick="changeDoctor('Dr. Rajesh Sharma', 'Cardiologist', '10:00 AM - 02:00 PM')">Cardiology</button>
+    <button onclick="changeDoctor('Dr. Sunita Rao', 'Neurologist', '01:00 PM - 05:00 PM')">Neurology</button>
+    <button onclick="changeDoctor('Dr. Anil Verma', 'Orthopedic Surgeon', '09:00 AM - 01:00 PM')">Orthopedics</button>
+
+    <div style="margin-top: 10px; padding: 10px; border: 1px solid #0275d8; width: 50%;">
+        <h4 id="docName">Dr. Rajesh Sharma</h4>
+        <p id="docSpec">Specialization: Cardiologist</p>
+        <p id="docTime">Timings: 10:00 AM - 02:00 PM</p>
+    </div>
+
+    <h2>Our Departments</h2>
+
+    <ul>
+        <li>Cardiology</li>
+        <li>Neurology</li>
+        <li>Orthopedics</li>
+        <li>General Medicine</li>
+        <li>Pediatrics</li>
+    </ul>
+
+    <!-- Task 3: Dynamic Bill / Service Charges Calculation -->
+    <h2>Medical Bill Estimator</h2>
+    <form onsubmit="return false;">
+        <label><input type="checkbox" id="chkConsult" value="500" onchange="calculateBill()"> Doctor Consultation (₹500)</label><br>
+        <label><input type="checkbox" id="chkBlood" value="300" onchange="calculateBill()"> Blood Test (₹300)</label><br>
+        <label><input type="checkbox" id="chkXray" value="700" onchange="calculateBill()"> X-Ray (₹700)</label><br>
+        <label><input type="checkbox" id="chkMRI" value="2500" onchange="calculateBill()"> MRI Scan (₹2500)</label><br><br>
+        <h3>Estimated Total Charge: ₹<span id="billTotal">0</span></h3>
+    </form>
+
+    <!-- Task 1: Form Validation (5 fields minimum) -->
+    <h2>Book Patient Appointment</h2>
+    <form id="appointmentForm">
+        Patient Name: <br>
+        <input type="text" id="patientName"><br><br>
+
+        Email: <br>
+        <input type="text" id="patientEmail"><br><br>
+
+        Mobile Number: <br>
+        <input type="text" id="patientMobile"><br><br>
+
+        Age: <br>
+        <input type="number" id="patientAge"><br><br>
+
+        Appointment Date: <br>
+        <input type="date" id="appointmentDate"><br><br>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+    <p id="appointmentStatus"></p>
+
+    <h2>Emergency Services</h2>
+
+    <p>
+        Emergency services are available 24 hours a day,
+        7 days a week.
+    </p>
+
+    <h3>Emergency Contact: 9876543210</h3>
+
+    <hr>
+
+    <center>
+        <p>© 2026 City Care Hospital</p>
+    </center>
+
+    <script>
+        // Task 2: Dynamic Greeting
+        window.onload = function() {
+            let hour = new Date().getHours();
+            let greeting = "";
+            if (hour < 12) {
+                greeting = "Good Morning! Welcome to City Care Hospital.";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon! Welcome to City Care Hospital.";
+            } else {
+                greeting = "Good Evening! Welcome to City Care Hospital.";
+            }
+            document.getElementById("hospitalGreeting").innerText = greeting;
+        };
+
+        // Task 4: Show / Hide Content
+        function toggleHospitalInfo() {
+            let info = document.getElementById("moreHospitalInfo");
+            if (info.style.display === "block") {
+                info.style.display = "none";
+            } else {
+                info.style.display = "block";
+            }
+        }
+
+        // Task 5: Dynamic Content Change
+        function changeDoctor(name, spec, time) {
+            document.getElementById("docName").innerText = name;
+            document.getElementById("docSpec").innerText = "Specialization: " + spec;
+            document.getElementById("docTime").innerText = "Timings: " + time;
+        }
+
+        // Task 3: Dynamic Price Calculation
+        function calculateBill() {
+            let total = 0;
+            if (document.getElementById("chkConsult").checked) total += 500;
+            if (document.getElementById("chkBlood").checked) total += 300;
+            if (document.getElementById("chkXray").checked) total += 700;
+            if (document.getElementById("chkMRI").checked) total += 2500;
+
+            document.getElementById("billTotal").innerText = total;
+        }
+
+        // Task 1: Form Validation (5 Fields)
+        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("patientName").value.trim();
+            let email = document.getElementById("patientEmail").value.trim();
+            let mobile = document.getElementById("patientMobile").value.trim();
+            let age = document.getElementById("patientAge").value.trim();
+            let date = document.getElementById("appointmentDate").value;
+            let status = document.getElementById("appointmentStatus");
+
+            if (name === "") {
+                status.innerHTML = "<span class='error'>Please enter patient name.</span>";
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                status.innerHTML = "<span class='error'>Please enter a valid email address.</span>";
+                return;
+            }
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerHTML = "<span class='error'>Mobile number must be 10 numeric digits.</span>";
+                return;
+            }
+            if (age < 1 || age > 110 || isNaN(age)) {
+                status.innerHTML = "<span class='error'>Please enter a valid age.</span>";
+                return;
+            }
+            if (date === "") {
+                status.innerHTML = "<span class='error'>Please select an appointment date.</span>";
+                return;
+            }
+
+            status.innerHTML = "<span class='success'>Appointment Booked Successfully!</span>";
+        });
+    </script>
+
+</body>
+</html>

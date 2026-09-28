@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Corner Restaurant</title>
+    <style>
+        .hidden-recipe { display: none; background: #fff3cd; padding: 10px; margin-top: 10px; border: 1px solid #ffeeba; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body>
+
+    <center>
+
+        <h1>Food Corner</h1>
+
+        <p>Delicious Food | Great Taste | Happy Moments</p>
+
+        <!-- Task 2: Dynamic Greeting -->
+        <h3 id="foodGreeting" style="color: #d9534f;"></h3>
+
+        <hr>
+
+        <a href="#">Home</a> |
+        <a href="#">Menu</a> |
+        <a href="#">About Us</a> |
+        <a href="#">Gallery</a> |
+        <a href="#">Contact</a>
+
+        <hr>
+
+    </center>
+
+    <h2>Welcome to Food Corner</h2>
+
+    <p>
+        Welcome to Food Corner Restaurant. We serve fresh,
+        delicious and hygienic food for our customers.
+    </p>
+
+    <!-- Task 4: Show / Hide Content -->
+    <h2>Chef's Special Story</h2>
+    <button onclick="toggleChefStory()">Read Chef's Message</button>
+    <div id="chefStory" class="hidden-recipe">
+        <p>Our head chef brings 15 years of culinary expertise, crafting authentic Italian pizzas and traditional Indian spices to serve you unforgettable meals daily!</p>
+    </div>
+
+    <!-- Task 5: Dynamic Content Change -->
+    <h2>Today's Featured Item</h2>
+    <p>Click below to preview dish details:</p>
+    <button onclick="changeSpecial('Farmhouse Pizza', 'Loaded with fresh veggies, mozzarella cheese & Italian herbs.', '₹250')">Pizza</button>
+    <button onclick="changeSpecial('Paneer Tikka', 'Marinated cottage cheese cubes grilled to perfection in tandoor.', '₹180')">Paneer Tikka</button>
+    <button onclick="changeSpecial('Crispy Veg Burger', 'Crispy veg patty topped with spicy sauce and crunchy lettuce.', '₹120')">Veg Burger</button>
+
+    <div style="margin-top: 10px; padding: 10px; border: 1px dashed #d9534f; width: 50%;">
+        <h3 id="dishTitle">Farmhouse Pizza</h3>
+        <p id="dishDesc">Loaded with fresh veggies, mozzarella cheese & Italian herbs.</p>
+        <p><strong id="dishPrice">₹250</strong></p>
+    </div>
+
+    <h2>Our Special Menu</h2>
+
+    <table border="1">
+        <tr>
+            <th>Food Item</th>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Pizza</td>
+            <td>Italian</td>
+            <td>₹250</td>
+        </tr>
+        <tr>
+            <td>Paneer Tikka</td>
+            <td>Indian</td>
+            <td>₹180</td>
+        </tr>
+        <tr>
+            <td>Veg Burger</td>
+            <td>Fast Food</td>
+            <td>₹120</td>
+        </tr>
+        <tr>
+            <td>Cold Coffee</td>
+            <td>Beverage</td>
+            <td>₹100</td>
+        </tr>
+    </table>
+
+    <!-- Task 3: Dynamic Bill / Price Calculation -->
+    <h2>Quick Order Calculator</h2>
+    <form onsubmit="return false;">
+        Select Food Item: <br>
+        <select id="foodSelect" onchange="calculateFoodTotal()">
+            <option value="0">-- Select Item --</option>
+            <option value="250">Pizza - ₹250</option>
+            <option value="180">Paneer Tikka - ₹180</option>
+            <option value="120">Veg Burger - ₹120</option>
+            <option value="100">Cold Coffee - ₹100</option>
+        </select><br><br>
+
+        Quantity: <br>
+        <input type="number" id="foodQty" min="1" value="1" oninput="calculateFoodTotal()"><br><br>
+
+        <h3>Total Bill: ₹<span id="foodTotal">0</span></h3>
+    </form>
+
+    <!-- Task 1: Form Validation (5 fields minimum) -->
+    <h2>Table Booking Form</h2>
+    <form id="bookingForm">
+        Customer Name: <br>
+        <input type="text" id="custName"><br><br>
+
+        Email: <br>
+        <input type="text" id="custEmail"><br><br>
+
+        Mobile Number: <br>
+        <input type="text" id="custMobile"><br><br>
+
+        Number of Guests: <br>
+        <input type="number" id="guestCount"><br><br>
+
+        Booking Date & Time: <br>
+        <input type="datetime-local" id="bookingDateTime"><br><br>
+
+        <button type="submit">Book Table</button>
+    </form>
+    <p id="bookingStatus"></p>
+
+    <h2>Opening Hours</h2>
+
+    <p>
+        Monday - Sunday: 11:00 AM to 10:00 PM
+    </p>
+
+    <hr>
+
+    <center>
+        <p>© 2026 Food Corner Restaurant</p>
+    </center>
+
+    <script>
+        // Task 2: Dynamic Greeting
+        window.onload = function() {
+            let hour = new Date().getHours();
+            let greeting = "";
+            if (hour < 12) {
+                greeting = "Good Morning! Enjoy fresh breakfast at Food Corner.";
+            } else if (hour < 18) {
+                greeting = "Good Afternoon! Drop by for our special Lunch menu.";
+            } else {
+                greeting = "Good Evening! Welcome to Food Corner Dinner Time.";
+            }
+            document.getElementById("foodGreeting").innerText = greeting;
+        };
+
+        // Task 4: Show / Hide Content
+        function toggleChefStory() {
+            let story = document.getElementById("chefStory");
+            if (story.style.display === "block") {
+                story.style.display = "none";
+            } else {
+                story.style.display = "block";
+            }
+        }
+
+        // Task 5: Dynamic Content Change
+        function changeSpecial(title, desc, price) {
+            document.getElementById("dishTitle").innerText = title;
+            document.getElementById("dishDesc").innerText = desc;
+            document.getElementById("dishPrice").innerText = price;
+        }
+
+        // Task 3: Dynamic Price Calculation
+        function calculateFoodTotal() {
+            let price = parseInt(document.getElementById("foodSelect").value) || 0;
+            let qty = parseInt(document.getElementById("foodQty").value) || 0;
+            let total = price * qty;
+            document.getElementById("foodTotal").innerText = total;
+        }
+
+        // Task 1: Form Validation (5 Fields)
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("custName").value.trim();
+            let email = document.getElementById("custEmail").value.trim();
+            let mobile = document.getElementById("custMobile").value.trim();
+            let guests = document.getElementById("guestCount").value;
+            let dateTime = document.getElementById("bookingDateTime").value;
+            let status = document.getElementById("bookingStatus");
+
+            if (name === "") {
+                status.innerHTML = "<span class='error'>Please enter customer name.</span>";
+                return;
+            }
+            if (!email.includes("@") || !email.includes(".")) {
+                status.innerHTML = "<span class='error'>Please enter a valid email address.</span>";
+                return;
+            }
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                status.innerHTML = "<span class='error'>Mobile number must be 10 digits.</span>";
+                return;
+            }
+            if (guests < 1 || guests > 20 || isNaN(guests)) {
+                status.innerHTML = "<span class='error'>Guests count must be between 1 and 20.</span>";
+                return;
+            }
+            if (dateTime === "") {
+                status.innerHTML = "<span class='error'>Please select date and time for booking.</span>";
+                return;
+            }
+
+            status.innerHTML = "<span class='success'>Table Reserved Successfully!</span>";
+        });
+    </script>
+
+</body>
+</html>
