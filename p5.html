@@ -1,746 +1,1466 @@
+```html
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Department of Computer Science</title>
 
-```
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    <style>
 
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f8fa;
-        color: #333;
-        line-height: 1.6;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    header {
-        background: linear-gradient(135deg, #0f5f73, #17a2b8);
-        color: white;
-        text-align: center;
-        padding: 40px 20px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
 
-    header h1 {
-        font-size: 36px;
-        margin-bottom: 8px;
-    }
+        /* ================= HEADER ================= */
 
-    header h3 {
-        font-weight: normal;
-        margin-bottom: 12px;
-    }
+        header {
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
 
-    #csGreeting {
-        color: white;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    nav {
-        background: #084653;
-        padding: 14px;
-        text-align: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 17px;
-        font-weight: bold;
-    }
-
-    nav a:hover {
-        color: #bdebf2;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 1100px;
-        margin: auto;
-    }
-
-    .hero {
-        background: white;
-        margin-top: 28px;
-        padding: 35px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .hero h2 {
-        color: #0f5f73;
-        margin-bottom: 12px;
-    }
-
-    section {
-        background: white;
-        margin: 25px 0;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-    }
-
-    section h2 {
-        color: #0f5f73;
-        margin-bottom: 15px;
-        border-left: 5px solid #17a2b8;
-        padding-left: 10px;
-    }
-
-    button {
-        background: #0f5f73;
-        color: white;
-        border: none;
-        padding: 11px 18px;
-        margin: 5px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    button:hover {
-        background: #084653;
-    }
-
-    .hidden-section {
-        display: none;
-        background: #f0f8fa;
-        padding: 18px;
-        margin-top: 15px;
-        border-left: 4px solid #17a2b8;
-        border-radius: 8px;
-    }
-
-    .faculty-buttons {
-        margin-bottom: 18px;
-    }
-
-    .faculty-card {
-        background: #f4fafb;
-        border: 1px solid #b8dfe6;
-        border-radius: 10px;
-        padding: 20px;
-    }
-
-    .faculty-card h3 {
-        color: #0f5f73;
-        margin-bottom: 10px;
-    }
-
-    .program-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        list-style: none;
-    }
-
-    .program-grid li {
-        background: #eef8fa;
-        padding: 16px;
-        text-align: center;
-        border: 1px solid #c5e3e8;
-        border-radius: 8px;
-        font-weight: bold;
-        color: #0f5f73;
-    }
-
-    .calculator {
-        background: #f4fafb;
-        border: 1px solid #b8dfe6;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    select,
-    input,
-    textarea {
-        width: 100%;
-        max-width: 500px;
-        padding: 11px;
-        margin-top: 6px;
-        border: 1px solid #bbb;
-        border-radius: 6px;
-        font-size: 15px;
-    }
-
-    select:focus,
-    input:focus,
-    textarea:focus {
-        outline: none;
-        border-color: #17a2b8;
-    }
-
-    .check-option {
-        margin: 12px 0;
-    }
-
-    .check-option input {
-        width: auto;
-        margin-right: 7px;
-    }
-
-    .total {
-        color: #0f5f73;
-        margin-top: 15px;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    th {
-        background: #0f5f73;
-        color: white;
-        padding: 13px;
-    }
-
-    td {
-        padding: 12px;
-        border: 1px solid #ddd;
-    }
-
-    tr:nth-child(even) {
-        background: #f3f8f9;
-    }
-
-    .notice-list {
-        padding-left: 22px;
-    }
-
-    .notice-list li {
-        margin-bottom: 8px;
-    }
-
-    .contact-box {
-        background: #eef8fa;
-        padding: 18px;
-        border-radius: 8px;
-        border-left: 4px solid #17a2b8;
-    }
-
-    .error {
-        color: red;
-        font-weight: bold;
-    }
-
-    .success {
-        color: green;
-        font-weight: bold;
-    }
-
-    footer {
-        background: #084653;
-        color: white;
-        text-align: center;
-        padding: 25px;
-        margin-top: 30px;
-    }
-
-    footer p {
-        margin: 5px;
-    }
-
-    @media (max-width: 700px) {
-
-        header h1 {
-            font-size: 28px;
+        .logo span {
+            color: #60a5fa;
         }
 
         nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #93c5fd;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(15, 23, 42, 0.85),
+                    rgba(30, 64, 175, 0.85)
+                ),
+                linear-gradient(135deg, #0f172a, #2563eb);
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #93c5fd;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #dbeafe;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
             display: inline-block;
-            margin: 5px 8px;
+            padding: 13px 28px;
+            background: white;
+            color: #1d4ed8;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .hero,
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            background: #dbeafe;
+        }
+
+        /* ================= GENERAL SECTION ================= */
+
         section {
-            padding: 20px;
+            padding: 70px 8%;
         }
 
-        table {
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        /* ================= PROGRAMS ================= */
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .program-card {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+        }
+
+        .program-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+        }
+
+        .program-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #1d4ed8;
+
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .program-card h3 {
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .program-card p {
+            color: #64748b;
             font-size: 14px;
         }
-    }
-</style>
-```
 
+        /* ================= FACULTY ================= */
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .faculty-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+            transition: 0.3s;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+        }
+
+        .faculty-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #dbeafe;
+            color: #1d4ed8;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+        .faculty-card h3 {
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .faculty-card .position {
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .faculty-card p {
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        /* ================= LABS ================= */
+
+        .lab-section {
+            background: white;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .lab-card {
+            background: #f8fafc;
+            padding: 28px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-5px);
+            border-color: #93c5fd;
+        }
+
+        .lab-card h3 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        .lab-card p {
+            color: #64748b;
+        }
+
+        #labs {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .toggle-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 25px;
+
+            background: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 7px;
+
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= FEE CALCULATOR ================= */
+
+        .calculator-section {
+            background: #f4f7fb;
+        }
+
+        .calculator-box {
+            max-width: 650px;
+            margin: auto;
+
+            background: white;
+            padding: 35px;
+
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #2563eb;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 13px;
+
+            background: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 7px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #feeResult {
+            margin-top: 20px;
+            padding: 15px;
+
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+
+            border-radius: 7px;
+
+            color: #1e3a8a;
+            font-weight: bold;
+
+            text-align: center;
+        }
+
+        /* ================= SEMINAR FORM ================= */
+
+        .registration-section {
+            background: white;
+        }
+
+        .registration-box {
+            max-width: 700px;
+            margin: auto;
+
+            background: #f8fafc;
+            padding: 35px;
+
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+
+            background: #2563eb;
+            color: white;
+
+            border: none;
+            border-radius: 7px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #registrationMessage {
+            margin-top: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* ================= NOTICE ================= */
+
+        .notice-box {
+            max-width: 900px;
+            margin: auto;
+
+            padding: 25px;
+
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+
+            border-radius: 10px;
+        }
+
+        .notice-box h3 {
+            color: #1d4ed8;
+            margin-bottom: 8px;
+        }
+
+        .notice-box p {
+            color: #475569;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            background: white;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-container p {
+            color: #64748b;
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        /* ================= GREETING ================= */
+
+        .greeting-box {
+            max-width: 850px;
+            margin: 0 auto 40px;
+
+            padding: 18px 25px;
+
+            background: #eff6ff;
+            border-radius: 10px;
+
+            text-align: center;
+            color: #1d4ed8;
+
+            font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            margin: 5px;
+        }
+
+        footer strong {
+            color: #60a5fa;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 50px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .calculator-box,
+            .registration-box {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav a {
+                margin: 0 5px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-```
-<!-- Header -->
-<header>
-    <h1>Department of Computer Science</h1>
-    <h3>XYZ University</h3>
 
-    <!-- Task 2: Dynamic Greeting -->
-    <h4 id="csGreeting"></h4>
-</header>
+    <!-- ================= HEADER ================= -->
 
-<!-- Navigation -->
-<nav>
-    <a href="#">Home</a>
-    <a href="#about">About Department</a>
-    <a href="#faculty">Faculty</a>
-    <a href="#courses">Courses</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <header>
 
-<div class="container">
+        <div class="logo">
+            Computer <span>Science</span>
+        </div>
 
-    <!-- Welcome -->
-    <div class="hero" id="about">
-        <h2>Welcome to the Department of Computer Science</h2>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#programs">Programs</a>
+            <a href="#faculty">Faculty</a>
+            <a href="#labs-section">Labs</a>
+            <a href="#registration">Seminar</a>
+        </nav>
 
-        <p>
-            The Department of Computer Science provides quality education
-            and develops technical and problem-solving skills among students.
-        </p>
-    </div>
+    </header>
 
-    <!-- Task 4 -->
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Department of <span>Computer Science</span>
+            </h1>
+
+            <h2>
+                XYZ University
+            </h2>
+
+            <p>
+                Empowering students through technology, innovation,
+                research and computer science education.
+            </p>
+
+            <a href="#programs" class="hero-btn">
+                Explore Department
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DYNAMIC GREETING ================= -->
+
     <section>
-        <h2>Research & Innovation Labs</h2>
 
-        <p>
-            Explore the research and innovation facilities available
-            to Computer Science students.
-        </p>
+        <div class="greeting-box" id="greeting">
+            Welcome to the Department of Computer Science!
+        </div>
 
-        <button onclick="toggleLabDetails()">
-            View Research Labs
+    </section>
+
+
+    <!-- ================= PROGRAMS ================= -->
+
+    <section id="programs">
+
+        <div class="section-title">
+
+            <h2>Academic Programs</h2>
+
+            <p>
+                Programs offered by the Department of Computer Science
+            </p>
+
+        </div>
+
+
+        <div class="program-grid">
+
+            <div class="program-card">
+
+                <div class="program-icon">
+                    BCA
+                </div>
+
+                <h3>BCA</h3>
+
+                <p>
+                    Bachelor of Computer Applications
+                    focusing on computer applications and software development.
+                </p>
+
+            </div>
+
+
+            <div class="program-card">
+
+                <div class="program-icon">
+                    MCA
+                </div>
+
+                <h3>MCA</h3>
+
+                <p>
+                    Master of Computer Applications
+                    for advanced computing and application development.
+                </p>
+
+            </div>
+
+
+            <div class="program-card">
+
+                <div class="program-icon">
+                    B.Tech
+                </div>
+
+                <h3>B.Tech CS</h3>
+
+                <p>
+                    Bachelor of Technology in Computer Science
+                    with engineering and technology fundamentals.
+                </p>
+
+            </div>
+
+
+            <div class="program-card">
+
+                <div class="program-icon">
+                    M.Tech
+                </div>
+
+                <h3>M.Tech CS</h3>
+
+                <p>
+                    Master of Technology in Computer Science
+                    focusing on advanced technology and research.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FACULTY ================= -->
+
+    <section id="faculty">
+
+        <div class="section-title">
+
+            <h2>Our Faculty</h2>
+
+            <p>
+                Meet the faculty members of the Computer Science Department
+            </p>
+
+        </div>
+
+
+        <div class="faculty-grid" id="facultyContainer">
+
+            <!-- Faculty content generated by JavaScript -->
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESEARCH LABS ================= -->
+
+    <section class="lab-section" id="labs-section">
+
+        <div class="section-title">
+
+            <h2>Research & Innovation</h2>
+
+            <p>
+                Explore our department's research and innovation facilities
+            </p>
+
+        </div>
+
+
+        <button class="toggle-btn" onclick="toggleLabs()">
+            Show Research & Innovation Labs
         </button>
 
-        <div id="labDetails" class="hidden-section">
-            <p>
-                The CS department hosts the
-                <strong>AI & Robotics Lab</strong>,
-                <strong>IoT Innovation Hub</strong>, and
-                <strong>Cyber Security Testing Center</strong>
-                for undergraduate and post-graduate projects.
-            </p>
-        </div>
-    </section>
 
-    <!-- Task 5 -->
-    <section id="faculty">
-        <h2>Faculty Profiles</h2>
+        <div id="labs">
 
-        <p>Click on a professor's name to view profile information:</p>
+            <div class="lab-grid">
 
-        <div class="faculty-buttons">
+                <div class="lab-card">
 
-            <button onclick="showFaculty(
-                'Dr. Amit Sharma',
-                'Professor',
-                'Artificial Intelligence',
-                'amit.sharma@xyzuniversity.edu'
-            )">
-                Dr. Amit Sharma
-            </button>
+                    <h3>AI & Robotics Lab</h3>
 
-            <button onclick="showFaculty(
-                'Dr. Neha Verma',
-                'Associate Professor',
-                'Data Science',
-                'neha.verma@xyzuniversity.edu'
-            )">
-                Dr. Neha Verma
-            </button>
+                    <p>
+                        A research facility for Artificial Intelligence,
+                        Machine Learning, robotics and intelligent systems.
+                    </p>
 
-            <button onclick="showFaculty(
-                'Mr. Rahul Singh',
-                'Assistant Professor',
-                'Computer Networks',
-                'rahul.singh@xyzuniversity.edu'
-            )">
-                Mr. Rahul Singh
-            </button>
+                </div>
+
+
+                <div class="lab-card">
+
+                    <h3>IoT Innovation Hub</h3>
+
+                    <p>
+                        A practical environment for Internet of Things,
+                        smart devices and connected technologies.
+                    </p>
+
+                </div>
+
+
+                <div class="lab-card">
+
+                    <h3>Cyber Security Testing Center</h3>
+
+                    <p>
+                        A dedicated environment for cybersecurity,
+                        network security and ethical security testing.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="faculty-card">
+    </section>
 
-            <h3 id="facName">Dr. Amit Sharma</h3>
 
-            <p>
-                <strong>Designation:</strong>
-                <span id="facDesig">Professor</span>
-            </p>
+    <!-- ================= FEE CALCULATOR ================= -->
 
-            <p>
-                <strong>Specialization:</strong>
-                <span id="facSpec">Artificial Intelligence</span>
-            </p>
+    <section class="calculator-section" id="fees">
+
+        <div class="section-title">
+
+            <h2>Semester Fee Estimator</h2>
 
             <p>
-                <strong>Email:</strong>
-                <span id="facEmail">amit.sharma@xyzuniversity.edu</span>
+                Calculate your estimated semester fees and additional charges
             </p>
 
         </div>
+
+
+        <div class="calculator-box">
+
+            <div class="form-group">
+
+                <label for="course">
+                    Select Program
+                </label>
+
+                <select id="course">
+
+                    <option value="30000">
+                        BCA - ₹30,000
+                    </option>
+
+                    <option value="40000">
+                        MCA - ₹40,000
+                    </option>
+
+                    <option value="50000">
+                        B.Tech CS - ₹50,000
+                    </option>
+
+                    <option value="60000">
+                        M.Tech CS - ₹60,000
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="checkbox-group">
+
+                <input type="checkbox" id="labFee">
+
+                <label for="labFee">
+                    CS Lab Access - ₹3,000
+                </label>
+
+            </div>
+
+
+            <div class="checkbox-group">
+
+                <input type="checkbox" id="examFee">
+
+                <label for="examFee">
+                    Examination Fee - ₹1,500
+                </label>
+
+            </div>
+
+
+            <button class="calculate-btn" onclick="calculateFee()">
+                Calculate Total Fee
+            </button>
+
+
+            <div id="feeResult">
+                Select your options and click Calculate Total Fee.
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- Programs -->
-    <section id="courses">
-        <h2>Programs Offered</h2>
 
-        <ul class="program-grid">
-            <li>BCA</li>
-            <li>MCA</li>
-            <li>B.Tech Computer Science</li>
-            <li>M.Tech Computer Science</li>
-        </ul>
-    </section>
+    <!-- ================= SEMINAR REGISTRATION ================= -->
 
-    <!-- Task 3 -->
-    <section>
-        <h2>Semester Fee & Lab Charges Estimator</h2>
+    <section class="registration-section" id="registration">
 
-        <div class="calculator">
+        <div class="section-title">
 
-            <form onsubmit="return false;">
+            <h2>Seminar & Event Registration</h2>
+
+            <p>
+                Register for upcoming department seminars and academic events
+            </p>
+
+        </div>
+
+
+        <div class="registration-box">
+
+            <form id="registrationForm">
 
                 <div class="form-group">
 
-                    <label>
-                        <strong>Select Program:</strong>
+                    <label for="studentName">
+                        Student Name
                     </label>
 
-                    <select
-                        id="progSelect"
-                        onchange="calculateDeptFee()"
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your full name"
                     >
-                        <option value="0">-- Select Program --</option>
-                        <option value="30000">BCA - ₹30,000</option>
-                        <option value="40000">MCA - ₹40,000</option>
-                        <option value="50000">B.Tech CS - ₹50,000</option>
-                        <option value="60000">M.Tech CS - ₹60,000</option>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="rollNo">
+                        University Roll No.
+                    </label>
+
+                    <input
+                        type="text"
+                        id="rollNo"
+                        placeholder="Enter your university roll number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="mobile"
+                        placeholder="Enter 10-digit mobile number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="semester">
+                        Semester
+                    </label>
+
+                    <select id="semester">
+
+                        <option value="">
+                            Select Semester
+                        </option>
+
+                        <option value="1">
+                            Semester 1
+                        </option>
+
+                        <option value="2">
+                            Semester 2
+                        </option>
+
+                        <option value="3">
+                            Semester 3
+                        </option>
+
+                        <option value="4">
+                            Semester 4
+                        </option>
+
+                        <option value="5">
+                            Semester 5
+                        </option>
+
+                        <option value="6">
+                            Semester 6
+                        </option>
+
                     </select>
 
                 </div>
 
-                <div class="check-option">
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="labCharge"
-                            value="3000"
-                            onchange="calculateDeptFee()"
-                        >
-                        CS Lab Access Fee (₹3,000)
-                    </label>
-                </div>
 
-                <div class="check-option">
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="examCharge"
-                            value="1500"
-                            onchange="calculateDeptFee()"
-                        >
-                        Examination Fee (₹1,500)
-                    </label>
-                </div>
+                <button type="submit" class="submit-btn">
+                    Register for Seminar
+                </button>
 
-                <h3 class="total">
-                    Total Payable Semester Fee:
-                    ₹<span id="deptTotal">0</span>
-                </h3>
+
+                <div id="registrationMessage"></div>
 
             </form>
 
         </div>
+
     </section>
 
-    <!-- Faculty Table -->
+
+    <!-- ================= IMPORTANT NOTICE ================= -->
+
     <section>
-        <h2>Faculty Members</h2>
 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>Specialization</th>
-            </tr>
+        <div class="section-title">
 
-            <tr>
-                <td>Dr. Amit Sharma</td>
-                <td>Professor</td>
-                <td>Artificial Intelligence</td>
-            </tr>
+            <h2>Important Notice</h2>
 
-            <tr>
-                <td>Dr. Neha Verma</td>
-                <td>Associate Professor</td>
-                <td>Data Science</td>
-            </tr>
-
-            <tr>
-                <td>Mr. Rahul Singh</td>
-                <td>Assistant Professor</td>
-                <td>Computer Networks</td>
-            </tr>
-        </table>
-    </section>
-
-    <!-- Task 1 -->
-    <section>
-        <h2>Seminar / Event Registration</h2>
-
-        <form id="seminarForm">
-
-            <div class="form-group">
-                <label><strong>Student Name:</strong></label>
-                <input type="text" id="semName">
-            </div>
-
-            <div class="form-group">
-                <label><strong>University Roll No:</strong></label>
-                <input type="text" id="semRoll">
-            </div>
-
-            <div class="form-group">
-                <label><strong>Email:</strong></label>
-                <input type="text" id="semEmail">
-            </div>
-
-            <div class="form-group">
-                <label><strong>Mobile Number:</strong></label>
-                <input type="text" id="semMobile">
-            </div>
-
-            <div class="form-group">
-                <label><strong>Semester:</strong></label>
-                <input
-                    type="number"
-                    id="semSem"
-                    min="1"
-                    max="8"
-                >
-            </div>
-
-            <button type="submit">
-                Register for Seminar
-            </button>
-
-        </form>
-
-        <p id="seminarStatus"></p>
-    </section>
-
-    <!-- Notice -->
-    <section>
-        <h2>Important Notice</h2>
-
-        <ol class="notice-list">
-            <li>Mid-term examinations will begin from 15 September.</li>
-            <li>Students must submit their assignments before the deadline.</li>
-            <li>Registration for the seminar is now open.</li>
-        </ol>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-
-        <div class="contact-box">
             <p>
-                <strong>Department of Computer Science</strong><br>
-                XYZ University<br>
-                Jaipur, Rajasthan<br>
-                Email: cs@xyzuniversity.edu
+                Department announcements
             </p>
+
         </div>
+
+
+        <div class="notice-box">
+
+            <h3>Upcoming Academic Activities</h3>
+
+            <p>
+                Students are advised to regularly check the department
+                announcements for seminars, workshops, research activities,
+                examinations and other academic events.
+            </p>
+
+        </div>
+
     </section>
 
-</div>
 
-<!-- Footer -->
-<footer>
-    <p><strong>Department of Computer Science</strong></p>
-    <p>© 2026 XYZ University</p>
-</footer>
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about">
+
+        <div class="section-title">
+
+            <h2>About the Department</h2>
+
+            <p>
+                Department of Computer Science - XYZ University
+            </p>
+
+        </div>
 
 
-<script>
+        <div class="about-container">
 
-    // Task 2: Dynamic Greeting
-    window.onload = function() {
+            <p>
+                The Department of Computer Science at XYZ University
+                provides students with knowledge and practical skills
+                in computer science, software development, networking,
+                artificial intelligence and cybersecurity.
+            </p>
 
-        let hour = new Date().getHours();
-        let greeting = "";
+            <p>
+                The department encourages innovation, research,
+                technical learning and practical application of
+                modern computing technologies.
+            </p>
 
-        if (hour < 12) {
-            greeting =
-                "Good Morning! Welcome to CS Department Portal.";
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            <strong>Department of Computer Science</strong>
+        </p>
+
+        <p>
+            XYZ University
+        </p>
+
+        <p>
+            Email: cs@xyzuniversity.edu
+        </p>
+
+        <p>
+            © 2026 Department of Computer Science. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* =====================================================
+           TASK 1 - SEMINAR / EVENT REGISTRATION VALIDATION
+        ===================================================== */
+
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                let name =
+                    document.getElementById("studentName").value.trim();
+
+                let roll =
+                    document.getElementById("rollNo").value.trim();
+
+                let email =
+                    document.getElementById("email").value.trim();
+
+                let mobile =
+                    document.getElementById("mobile").value.trim();
+
+                let semester =
+                    document.getElementById("semester").value;
+
+                let message =
+                    document.getElementById("registrationMessage");
+
+
+                if (name === "") {
+
+                    message.innerHTML =
+                        "Please enter your name.";
+
+                    message.style.color = "red";
+
+                    return;
+                }
+
+
+                if (roll === "") {
+
+                    message.innerHTML =
+                        "Please enter your university roll number.";
+
+                    message.style.color = "red";
+
+                    return;
+                }
+
+
+                let emailPattern =
+                    /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+
+                if (!email.match(emailPattern)) {
+
+                    message.innerHTML =
+                        "Please enter a valid email address.";
+
+                    message.style.color = "red";
+
+                    return;
+                }
+
+
+                let mobilePattern =
+                    /^[0-9]{10}$/;
+
+
+                if (!mobile.match(mobilePattern)) {
+
+                    message.innerHTML =
+                        "Please enter a valid 10-digit mobile number.";
+
+                    message.style.color = "red";
+
+                    return;
+                }
+
+
+                if (semester === "") {
+
+                    message.innerHTML =
+                        "Please select your semester.";
+
+                    message.style.color = "red";
+
+                    return;
+                }
+
+
+                message.innerHTML =
+                    "Registration successful! Welcome, " + name + ".";
+
+                message.style.color = "green";
+
+            });
+
+
+        /* =====================================================
+           TASK 2 - DYNAMIC GREETING
+        ===================================================== */
+
+        function showGreeting() {
+
+            let hour =
+                new Date().getHours();
+
+            let greeting;
+
+
+            if (hour < 12) {
+
+                greeting =
+                    "Good Morning! Welcome to the Department of Computer Science.";
+
+            }
+            else if (hour < 18) {
+
+                greeting =
+                    "Good Afternoon! Welcome to the Department of Computer Science.";
+
+            }
+            else {
+
+                greeting =
+                    "Good Evening! Welcome to the Department of Computer Science.";
+
+            }
+
+
+            document.getElementById("greeting").innerHTML =
+                greeting;
+
         }
-        else if (hour < 18) {
-            greeting =
-                "Good Afternoon! Welcome to CS Department Portal.";
-        }
-        else {
-            greeting =
-                "Good Evening! Welcome to CS Department Portal.";
-        }
-
-        document.getElementById("csGreeting").innerText =
-            greeting;
-    };
 
 
-    // Task 4: Show / Hide Content
-    function toggleLabDetails() {
-
-        let labs =
-            document.getElementById("labDetails");
-
-        if (labs.style.display === "block") {
-            labs.style.display = "none";
-        }
-        else {
-            labs.style.display = "block";
-        }
-    }
+        showGreeting();
 
 
-    // Task 5: Dynamic Content Change
-    function showFaculty(name, desig, spec, email) {
+        /* =====================================================
+           TASK 3 - SEMESTER FEE & LAB CHARGES ESTIMATOR
+        ===================================================== */
 
-        document.getElementById("facName").innerText =
-            name;
+        function calculateFee() {
 
-        document.getElementById("facDesig").innerText =
-            desig;
-
-        document.getElementById("facSpec").innerText =
-            spec;
-
-        document.getElementById("facEmail").innerText =
-            email;
-    }
+            let course =
+                parseInt(
+                    document.getElementById("course").value
+                );
 
 
-    // Task 3: Dynamic Fee Calculation
-    function calculateDeptFee() {
+            let labFee = 0;
 
-        let base =
-            parseInt(
-                document.getElementById("progSelect").value
-            ) || 0;
-
-        let lab =
-            document.getElementById("labCharge").checked
-            ? 3000
-            : 0;
-
-        let exam =
-            document.getElementById("examCharge").checked
-            ? 1500
-            : 0;
-
-        let total =
-            base > 0
-            ? (base + lab + exam)
-            : 0;
-
-        document.getElementById("deptTotal").innerText =
-            total.toLocaleString("en-IN");
-    }
+            let examFee = 0;
 
 
-    // Task 1: Form Validation
-    document.getElementById("seminarForm")
-    .addEventListener("submit", function(event) {
+            if (
+                document.getElementById("labFee").checked
+            ) {
 
-        event.preventDefault();
+                labFee = 3000;
 
-        let name =
-            document.getElementById("semName").value.trim();
-
-        let roll =
-            document.getElementById("semRoll").value.trim();
-
-        let email =
-            document.getElementById("semEmail").value.trim();
-
-        let mobile =
-            document.getElementById("semMobile").value.trim();
-
-        let sem =
-            document.getElementById("semSem").value;
-
-        let status =
-            document.getElementById("seminarStatus");
+            }
 
 
-        if (name === "") {
+            if (
+                document.getElementById("examFee").checked
+            ) {
 
-            status.innerHTML =
-                "<span class='error'>Please enter student name.</span>";
+                examFee = 1500;
 
-            return;
+            }
+
+
+            let total =
+                course + labFee + examFee;
+
+
+            document.getElementById("feeResult").innerHTML =
+                "Total Estimated Fee: ₹" + total.toLocaleString("en-IN");
+
         }
 
 
-        if (roll === "" || isNaN(roll)) {
+        /* =====================================================
+           TASK 4 - SHOW / HIDE RESEARCH & INNOVATION LABS
+        ===================================================== */
 
-            status.innerHTML =
-                "<span class='error'>Please enter a valid numeric Roll Number.</span>";
+        function toggleLabs() {
 
-            return;
+            let labs =
+                document.getElementById("labs");
+
+            let button =
+                document.querySelector(".toggle-btn");
+
+
+            if (labs.style.display === "block") {
+
+                labs.style.display = "none";
+
+                button.innerHTML =
+                    "Show Research & Innovation Labs";
+
+            }
+            else {
+
+                labs.style.display = "block";
+
+                button.innerHTML =
+                    "Hide Research & Innovation Labs";
+
+            }
+
         }
 
 
-        if (!email.includes("@") || !email.includes(".")) {
+        /* =====================================================
+           TASK 5 - DYNAMIC FACULTY PROFILES
+        ===================================================== */
 
-            status.innerHTML =
-                "<span class='error'>Please enter a valid email address.</span>";
+        let faculty = [
 
-            return;
+            {
+                name: "Dr. Amit Sharma",
+                position: "Professor",
+                subject: "Artificial Intelligence",
+                email: "amit.sharma@xyzuniversity.edu",
+                initials: "AS"
+            },
+
+            {
+                name: "Dr. Neha Verma",
+                position: "Associate Professor",
+                subject: "Data Science",
+                email: "neha.verma@xyzuniversity.edu",
+                initials: "NV"
+            },
+
+            {
+                name: "Mr. Rahul Singh",
+                position: "Assistant Professor",
+                subject: "Computer Networks",
+                email: "rahul.singh@xyzuniversity.edu",
+                initials: "RS"
+            }
+
+        ];
+
+
+        function displayFaculty() {
+
+            let container =
+                document.getElementById("facultyContainer");
+
+
+            container.innerHTML = "";
+
+
+            faculty.forEach(function(member) {
+
+                let card =
+                    document.createElement("div");
+
+                card.className =
+                    "faculty-card";
+
+
+                card.innerHTML = `
+
+                    <div class="faculty-avatar">
+                        ${member.initials}
+                    </div>
+
+                    <h3>
+                        ${member.name}
+                    </h3>
+
+                    <div class="position">
+                        ${member.position}
+                    </div>
+
+                    <p>
+                        <strong>Specialization:</strong>
+                        ${member.subject}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${member.email}
+                    </p>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
         }
 
 
-        if (mobile.length !== 10 || isNaN(mobile)) {
+        displayFaculty();
 
-            status.innerHTML =
-                "<span class='error'>Mobile number must be 10 digits.</span>";
+    </script>
 
-            return;
-        }
-
-
-        if (sem < 1 || sem > 8 || sem === "") {
-
-            status.innerHTML =
-                "<span class='error'>Semester must be between 1 and 8.</span>";
-
-            return;
-        }
-
-
-        status.innerHTML =
-            "<span class='success'>Seminar Registration Successful!</span>";
-
-    });
-
-</script>
-```
 
 </body>
+
 </html>
+```
